@@ -37,14 +37,14 @@ while (1 != 0)/*shell starts running*/
 write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
 /*check if write == -1*/
 getNum = getline(&line, &len, stdin); /*take input from user*/
-if (getNum == -1)
-printf("Error!(1)\n");
 if (getNum == EOF) /*checks end of file condition*/
 {
 write(STDOUT_FILENO, "\n", 1);
 /*check if getline == -1*/
 break;
 }
+if (getNum == -1)
+printf("Error!(1)\n");
 argv = argvSetup(line); /*sets up argv*/
 if (strcmp(argv[0], "exit") == 0) /*exit command*/
 {
@@ -66,14 +66,19 @@ printEnviron();
 /*need handling for arg1 not being blank*/
 
 pathCheck = pathChecker(argv[0]);
-printf("pathcheck: %s\n", pathCheck);
-if (pathCheck == NULL)
+/*
+ * if (pathCheck == NULL)
 printf("Error!(3)\n");
+*
+*/
 i = execFunc(pathCheck, argv); /*uses execve on path argv[0].*/
-if (i == -1)
+/*
+ * if (i == -1)
 {
 printf("Error!(4)");
 }
+*
+*/
 free(argv);
 }
 return (0);
