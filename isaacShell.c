@@ -30,16 +30,19 @@ int main(void)
 size_t len; /*getline buffer size*/
 char *line = NULL, **argv, *pathCheck; /*what getline writes to*/
 ssize_t getNum; /*used to check EOF from getline*/
-int i;
+int i, j;
 
 while (1 != 0)/*shell starts running*/
 {
-write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
-/*check if write == -1*/
+j = write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
+if (j == -1)
+printf("ERROR!(5)");
 getNum = getline(&line, &len, stdin); /*take input from user*/
 if (getNum == EOF) /*checks end of file condition*/
 {
-write(STDOUT_FILENO, "\n", 1);
+j = write(STDOUT_FILENO, "\n", 1);
+if (j == -1)
+printf("ERROR!(5)");
 /*check if getline == -1*/
 break;
 }
@@ -66,6 +69,7 @@ printEnviron();
 /*need handling for arg1 not being blank*/
 
 pathCheck = pathChecker(argv[0]);
+printf("PathChecked: %s\n", pathCheck);
 /*
  * if (pathCheck == NULL)
 printf("Error!(3)\n");

@@ -13,17 +13,25 @@ list_t *head = NULL;
 list_t *current;
 struct stat sb;
 int i;
-s1 = strtok(path, "=:\n");
+printf("whichPath: %s\n", path);
+s1 = strtok(path, "=:\n ");
 current = add_node_end(&head, s1);
+printf("whichCommandName: %s\n", commandName);
 while (current->str != NULL)
 {
-s1 = strtok(NULL, "=:\n");
+s1 = strtok(NULL, "=:\n ");
 if (s1 != NULL)
 {
-s2 = malloc(sizeof(s1) + sizeof(commandName) + 1);
-s2 = strcat(s2, s1);
-s2 = strcat(s2, "/");
-s2 = strcat(s2, commandName);
+s2 = malloc(sizeof(s1) + sizeof(commandName) + 2);
+s2 = NULL;
+printf("s2 should be: %s/%s\n", s1,commandName);
+printf("s2(0):%s\n", s2);
+strcat(s2, s1);
+printf("s2(1):%s\n", s2);
+strcat(s2, "/");
+printf("s2(2):%s\n", s2);
+strcat(s2, commandName);
+printf("s2(3):%s\n", s2);
 current = add_node_end(&head, s2);
 free(s2);
 }
@@ -32,14 +40,17 @@ else
 current = add_node_end(&head, NULL);
 }
 }
+print_list(head);
 current = head;
 while (current->next != NULL)
 {
 i = stat(current->str, &sb);
 if (i == 0)
 {
+s1 = strdup(current->str);
 free_list(head);
-return (current->str);
+printf("s1: %s\n", s1);
+return (s1);
 }
 current = current->next;
 }
