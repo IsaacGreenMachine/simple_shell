@@ -78,6 +78,7 @@ return (NULL);
  */
 void freeAndExit(char **argv, int i)
 {
+freeArgv(argv);
 free(argv);
 exit(i);
 }

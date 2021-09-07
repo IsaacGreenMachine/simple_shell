@@ -38,10 +38,12 @@ while (current->next != NULL)
 i = stat(current->str, &sb);
 if (i == 0)
 {
+free_list(head);
 return (current->str);
 }
 current = current->next;
 }
+free_list(head);
 return (NULL);
 }
 

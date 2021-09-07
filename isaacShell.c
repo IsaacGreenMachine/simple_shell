@@ -79,6 +79,9 @@ printf("Error!(4)");
 }
 *
 */
+printf("freeArgv:\n");
+freeArgv(argv);
+printf("free:\n");
 free(argv);
 }
 return (0);
