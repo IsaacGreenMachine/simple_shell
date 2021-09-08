@@ -32,7 +32,6 @@ size_t print_list(const list_t *h);
 int printError(int i);
 void printEnviron(void);
 void freeAndExit(char **argv, int i);
-void freeArgv(char **argv);
 void free_list(list_t *head);
 char *_strcat(char *dest, char *src);
 extern char **environ;

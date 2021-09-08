@@ -38,11 +38,6 @@ j = write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
 if (j == -1)
 printf("ERROR!(5)");
 getNum = getline(&line, &len, stdin); /*take input from user*/
-
-
-
-
-//////VVV///////////////?
 if (getNum == EOF) /*checks end of file condition*/
 {
 j = write(STDOUT_FILENO, "\n", 1);
@@ -53,8 +48,6 @@ break;
 }
 if (getNum == -1)
 printf("Error!(1)\n");
-
-
 argv = argvSetup(line); /*sets up argv*/
 if (strcmp(argv[0], "exit") == 0) /*exit command*/
 {
@@ -80,7 +73,7 @@ printf("PathChecked: %s\n", pathCheck);
 /*
  * if (pathCheck == NULL)
 printf("Error!(3)\n");
-*
+
 */
 i = execFunc(pathCheck, argv); /*uses execve on path argv[0].*/
 /*
@@ -90,8 +83,6 @@ printf("Error!(4)");
 }
 *
 */
-printf("freeArgv:\n");
-freeArgv(argv);
 printf("free:\n");
 free(pathCheck);
 free(argv);
