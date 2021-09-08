@@ -69,7 +69,7 @@ printf("Error!(2)");
 }
 else
 {
-if (atty = 1)
+if (atty == 1)
 {
 free(line);
 j = write(STDOUT_FILENO, "\n", 1);
