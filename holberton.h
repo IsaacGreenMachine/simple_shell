@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <errno.h>
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -35,4 +36,9 @@ void freeAndExit(char **argv, int i);
 void free_list(list_t *head);
 char *_strcat(char *dest, char *src);
 extern char **environ;
+int _putchar(char c);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *str);
+int _strncmp(char *s1, char *s2, int len);
 #endif

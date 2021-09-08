@@ -20,16 +20,16 @@ while (current->str != NULL)
 s1 = strtok(NULL, "=:\n ");
 if (s1 != NULL)
 {
-s2 = malloc(strlen(s1) + strlen(commandName) + 2);
+s2 = malloc(_strlen(s1) + _strlen(commandName) + 2);
 if(s2 == NULL)
 {
 printf("MALLOC FAILED!!\n");
 }
 *s2 = '\0';
-strcat(s2, s1);
-strcat(s2, "/");
-strcat(s2, commandName);
-strcat(s2, "\0");
+_strcat(s2, s1);
+_strcat(s2, "/");
+_strcat(s2, commandName);
+_strcat(s2, "\0");
 current = add_node_end(&head, s2);
 free(s2);
 }
@@ -45,7 +45,7 @@ while (current->next != NULL)
 i = stat(current->str, &sb);
 if (i == 0)
 {
-s1 = strdup(current->str);
+s1 = _strdup(current->str);
 free_list(head);
 return (s1);
 }
@@ -106,7 +106,13 @@ return (i + 5);
  */
 void printEnviron(void)
 {
-int i;
+int i, j;
 for (i = 0; environ[i] != NULL; i++)
-printf("%s\n", environ[i]);
+{
+for(j = 0; environ[i][j] != '\0'; j++)
+{
+_putchar(environ[i][j]);
+}
+}
+_putchar('\n');
 }

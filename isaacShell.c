@@ -37,7 +37,9 @@ while (1 != 0)/*shell starts running*/
 if(atty == 1)
 j = write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
 if (j == -1)
-printf("ERROR!(5)");
+{
+/*printf("ERROR!(5)");*/
+}
 getNum = getline(&line, &len, stdin); /*take input from user*/
 if (getNum == EOF) /*checks end of file condition*/
 {
@@ -45,21 +47,20 @@ if (getNum == EOF) /*checks end of file condition*/
 break;
 }
 if (getNum == -1)
-printf("Error!(1)\n");
+{
+/*printf("Error!(1)\n");*/
+}
 argv = argvSetup(line); /*sets up argv*/
-if (strcmp(argv[0], "exit") == 0) /*exit command*/
+if (_strcmp(argv[0], "exit") == 0) /*exit command*/
 {
-if (argv[1] == NULL || strcmp(argv[1], "0") == 0)
-{
+/*if (argv[1] == NULL || strcmp(argv[1], "0") == 0)
+{*/
 if(atty == 1)
 {
 free(line);
-j = write(STDOUT_FILENO, "\n", 1);
-if (j == -1)
-printf("ERROR!(5)");
 }
 freeAndExit(argv, 0);
-}
+/*}
 else
 {
 i = atoi(argv[1]);
@@ -79,8 +80,9 @@ printf("ERROR!(5)");
 freeAndExit(argv, i);
 }
 }
+*/
 }
-if (strcmp(argv[0], "env") == 0) /*env command*/
+if (_strcmp(argv[0], "env") == 0) /*env command*/
 printEnviron();
 /*need handling for arg1 not being blank*/
 
@@ -91,13 +93,10 @@ printf("Error!(3)\n");
 
 */
 i = execFunc(pathCheck, argv); /*uses execve on path argv[0].*/
-/*
- * if (i == -1)
+if (i == -1)
 {
-printf("Error!(4)");
+/*printf("Error!(4)");*/
 }
-*
-*/
 free(pathCheck);
 free(argv);
 }
@@ -106,7 +105,9 @@ if (atty == 1)
 free(line);
 j = write(STDOUT_FILENO, "\n", 1);
 if (j == -1)
-printf("ERROR!(5)");
+{
+/*printf("ERROR!(5)");*/
+}
 }
 return (0);
 }
