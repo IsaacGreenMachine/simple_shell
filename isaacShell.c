@@ -30,19 +30,17 @@ int main(void)
 size_t len; /*getline buffer size*/
 char *line = NULL, **argv, *pathCheck; /*what getline writes to*/
 ssize_t getNum; /*used to check EOF from getline*/
-int i, j;
+int i, j, atty = isatty(STDIN_FILENO);
 
 while (1 != 0)/*shell starts running*/
 {
+if(atty == 1)
 j = write(STDOUT_FILENO, "#shellYeah!$ ", 13); /*write shell name*/
 if (j == -1)
 printf("ERROR!(5)");
 getNum = getline(&line, &len, stdin); /*take input from user*/
 if (getNum == EOF) /*checks end of file condition*/
 {
-j = write(STDOUT_FILENO, "\n", 1);
-if (j == -1)
-printf("ERROR!(5)");
 /*check if getline == -1*/
 break;
 }
@@ -53,7 +51,13 @@ if (strcmp(argv[0], "exit") == 0) /*exit command*/
 {
 if (argv[1] == NULL || strcmp(argv[1], "0") == 0)
 {
+if(atty == 1)
+{
 free(line);
+j = write(STDOUT_FILENO, "\n", 1);
+if (j == -1)
+printf("ERROR!(5)");
+}
 freeAndExit(argv, 0);
 }
 else
@@ -65,7 +69,13 @@ printf("Error!(2)");
 }
 else
 {
+if (atty = 1)
+{
 free(line);
+j = write(STDOUT_FILENO, "\n", 1);
+if (j == -1)
+printf("ERROR!(5)");
+}
 freeAndExit(argv, i);
 }
 }
@@ -91,6 +101,12 @@ printf("Error!(4)");
 free(pathCheck);
 free(argv);
 }
+if (atty == 1)
+{
 free(line);
+j = write(STDOUT_FILENO, "\n", 1);
+if (j == -1)
+printf("ERROR!(5)");
+}
 return (0);
 }
