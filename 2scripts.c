@@ -23,7 +23,6 @@ s1 = strtok(NULL, "=:\n ");
 if (s1 != NULL)
 {
 s2 = malloc(sizeof(s1) + sizeof(commandName) + 2);
-s2 = NULL;
 printf("s2 should be: %s/%s\n", s1,commandName);
 printf("s2(0):%s\n", s2);
 strcat(s2, s1);
