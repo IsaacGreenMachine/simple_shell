@@ -52,7 +52,10 @@ argv = argvSetup(line); /*sets up argv*/
 if (strcmp(argv[0], "exit") == 0) /*exit command*/
 {
 if (argv[1] == NULL || strcmp(argv[1], "0") == 0)
+{
+free(line);
 freeAndExit(argv, 0);
+}
 else
 {
 i = atoi(argv[1]);
@@ -61,7 +64,10 @@ if (i == 0)
 printf("Error!(2)");
 }
 else
+{
+free(line);
 freeAndExit(argv, i);
+}
 }
 }
 if (strcmp(argv[0], "env") == 0) /*env command*/
@@ -69,7 +75,6 @@ printEnviron();
 /*need handling for arg1 not being blank*/
 
 pathCheck = pathChecker(argv[0]);
-printf("PathChecked: %s\n", pathCheck);
 /*
  * if (pathCheck == NULL)
 printf("Error!(3)\n");
@@ -83,9 +88,9 @@ printf("Error!(4)");
 }
 *
 */
-printf("free:\n");
 free(pathCheck);
 free(argv);
 }
+free(line);
 return (0);
 }

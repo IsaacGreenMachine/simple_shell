@@ -32,7 +32,6 @@ char *pathChecker(char *command)
 {
 struct stat sb;
 char *path;
-printf("Command: %s\n", command);
 if (stat(command, &sb) == 0)
 {
 return (command);
@@ -40,9 +39,7 @@ return (command);
 else
 {
 path = getPath();
-printf("getPath: %s\n", path);
 path = which(path, command);
-printf("getPath2: %s\n", path);
 if (stat(path, &sb) == 0)
 {
 return (path);
